@@ -1,66 +1,33 @@
-## Foundry
+# DeFi Super-App
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+DeFi Super-App is a full-stack decentralized protocol that includes an AMM, lending pool, ERC4626 vault, Chainlink oracle integration, DAO governance, ERC1155 badges, upgradeable configuration, factory deployment, and automated testing.
 
-Foundry consists of:
+## Tech Stack
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- Solidity
+- Foundry
+- OpenZeppelin
+- Chainlink
+- GitHub Actions
+- Slither
+- React frontend
+- The Graph
 
-## Documentation
+## Core Contracts
 
-https://book.getfoundry.sh/
+- GovernanceToken — ERC20Votes + ERC20Permit
+- SuperAMM — constant product AMM with 0.3% fee
+- LendingPool — collateral, borrow, repay, health factor
+- YieldVault — ERC4626 tokenized vault
+- ChainlinkOracle — price feed with stale price check
+- SuperGovernor — DAO governance
+- Treasury — DAO treasury
+- PoolFactory — CREATE and CREATE2 deployment
+- ProtocolConfigV1/V2 — UUPS upgrade path
+- ProtocolBadge — ERC1155 badge NFT
+- AssemblyMath — Yul gas comparison
 
-## Usage
+## How to Install
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+```bash
+forge install
