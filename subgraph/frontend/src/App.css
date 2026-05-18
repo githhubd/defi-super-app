@@ -9,8 +9,16 @@ body {
   min-height: 100vh;
   padding: 40px;
   background:
-    radial-gradient(circle at top left, rgba(99, 102, 241, 0.35), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.25), transparent 35%),
+    radial-gradient(
+      circle at top left,
+      rgba(99, 102, 241, 0.35),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(16, 185, 129, 0.25),
+      transparent 35%
+    ),
     #0b1020;
 }
 

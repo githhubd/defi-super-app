@@ -10,7 +10,8 @@ function App() {
           <p className="badge">DeFi Super-App</p>
           <h1>All-in-one decentralized finance protocol</h1>
           <p className="subtitle">
-            AMM swap, lending pool, ERC4626 vault, DAO governance and subgraph analytics.
+            AMM swap, lending pool, ERC4626 vault, DAO governance and subgraph
+            analytics.
           </p>
         </div>
 

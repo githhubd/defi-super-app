@@ -1,4 +1,10 @@
-import { useAccount, useReadContract, useWriteContract, useChainId, useSwitchChain } from "wagmi";
+import {
+  useAccount,
+  useReadContract,
+  useWriteContract,
+  useChainId,
+  useSwitchChain,
+} from "wagmi";
 import { baseSepolia } from "wagmi/chains";
 import { formatEther, parseEther } from "viem";
 import { ADDRESSES } from "../contracts/addresses";
@@ -129,16 +135,22 @@ export function ProtocolDashboard() {
 
       {error && (
         <p style={{ color: "red" }}>
-          Transaction failed or rejected. Please check wallet, balance, and network.
+          Transaction failed or rejected. Please check wallet, balance, and
+          network.
         </p>
       )}
 
       <h3>Active Proposals</h3>
-      <p>Proposal #1 — Pending / Active / Succeeded / Defeated / Queued / Executed</p>
+      <p>
+        Proposal #1 — Pending / Active / Succeeded / Defeated / Queued /
+        Executed
+      </p>
       <button disabled={wrongNetwork}>Vote For</button>
 
       <h3>Subgraph Data</h3>
-      <p>Recent swaps will be loaded from The Graph after subgraph deployment.</p>
+      <p>
+        Recent swaps will be loaded from The Graph after subgraph deployment.
+      </p>
     </section>
   );
 }
