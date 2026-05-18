@@ -109,4 +109,35 @@ function testRevertSwapSlippage() public {
 
     vm.stopPrank();
 }
+function testInitialReservesAreZero() public view {
+    assertEq(amm.reserveA(), 0);
+    assertEq(amm.reserveB(), 0);
+}
+
+function testTokenAAddress() public view {
+    assertEq(address(amm.tokenA()), address(tokenA));
+}
+
+function testTokenBAddress() public view {
+    assertEq(address(amm.tokenB()), address(tokenB));
+}
+
+function testFeeIsThree() public view {
+    assertEq(amm.FEE(), 3);
+}
+
+function testAddLiquidityTwice() public {
+    vm.startPrank(user);
+
+    tokenA.approve(address(amm), 2000 ether);
+    tokenB.approve(address(amm), 2000 ether);
+
+    amm.addLiquidity(1000 ether, 1000 ether);
+    amm.addLiquidity(500 ether, 500 ether);
+
+    vm.stopPrank();
+
+    assertEq(amm.reserveA(), 1500 ether);
+    assertEq(amm.reserveB(), 1500 ether);
+}
 }
