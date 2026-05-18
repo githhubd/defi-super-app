@@ -14,21 +14,23 @@ contract AMMInvariantTest is Test {
     address user = address(1);
 
     function setUp() public {
-        tokenA = new GovernanceToken();
-        tokenB = new GovernanceToken();
+    tokenA = new GovernanceToken();
+    tokenB = new GovernanceToken();
 
-        amm = new SuperAMM(address(tokenA), address(tokenB));
+    amm = new SuperAMM(address(tokenA), address(tokenB));
 
-        tokenA.transfer(user, 1_000_000 ether);
-        tokenB.transfer(user, 1_000_000 ether);
+    tokenA.transfer(user, 1_000_000 ether);
+    tokenB.transfer(user, 1_000_000 ether);
 
-        vm.startPrank(user);
-        tokenA.approve(address(amm), type(uint256).max);
-        tokenB.approve(address(amm), type(uint256).max);
+    vm.startPrank(user);
+    tokenA.approve(address(amm), type(uint256).max);
+    tokenB.approve(address(amm), type(uint256).max);
 
-        amm.addLiquidity(100_000 ether, 100_000 ether);
-        vm.stopPrank();
-    }
+    amm.addLiquidity(100_000 ether, 100_000 ether);
+    vm.stopPrank();
+
+    targetContract(address(amm));
+}
 
     function invariant_ReservesAreNeverZero() public view {
         assertGt(amm.reserveA(), 0);
