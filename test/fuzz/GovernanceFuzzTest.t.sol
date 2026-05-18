@@ -33,25 +33,26 @@ contract GovernanceFuzzTest is Test {
 
         assertEq(token.balanceOf(address(2)), amount);
     }
+
     function testFuzzDelegateVotingPower(uint256 amount) public {
-    amount = bound(amount, 1 ether, 10_000 ether);
+        amount = bound(amount, 1 ether, 10_000 ether);
 
-    vm.prank(user);
-    token.delegate(user);
+        vm.prank(user);
+        token.delegate(user);
 
-    vm.roll(block.number + 1);
+        vm.roll(block.number + 1);
 
-    assertGe(token.getVotes(user), amount);
-}
+        assertGe(token.getVotes(user), amount);
+    }
 
-function testFuzzTransferDoesNotChangeTotalSupply(uint256 amount) public {
-    amount = bound(amount, 1 ether, 1000 ether);
+    function testFuzzTransferDoesNotChangeTotalSupply(uint256 amount) public {
+        amount = bound(amount, 1 ether, 1000 ether);
 
-    uint256 supplyBefore = token.totalSupply();
+        uint256 supplyBefore = token.totalSupply();
 
-    vm.prank(user);
-    token.transfer(address(3), amount);
+        vm.prank(user);
+        token.transfer(address(3), amount);
 
-    assertEq(token.totalSupply(), supplyBefore);
-}
+        assertEq(token.totalSupply(), supplyBefore);
+    }
 }

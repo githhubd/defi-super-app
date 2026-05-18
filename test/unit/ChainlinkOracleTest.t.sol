@@ -53,35 +53,38 @@ contract ChainlinkOracleTest is Test {
         vm.expectRevert(ChainlinkOracle.InvalidPrice.selector);
         oracle.getPrice();
     }
+
     function testStaleTime() public view {
-    assertEq(oracle.STALE_TIME(), 1 hours);
-}
+        assertEq(oracle.STALE_TIME(), 1 hours);
+    }
 
-function testPriceFeedAddress() public view {
-    assertEq(address(oracle.PRICE_FEED()), address(mockFeed));
-}
-function testGetPriceAfterUpdate() public {
-    mockFeed.setPrice(3000e8);
+    function testPriceFeedAddress() public view {
+        assertEq(address(oracle.PRICE_FEED()), address(mockFeed));
+    }
 
-    assertEq(oracle.getPrice(), 3000e8);
-}
+    function testGetPriceAfterUpdate() public {
+        mockFeed.setPrice(3000e8);
 
-function testGetPriceAfterSecondUpdate() public {
-    mockFeed.setPrice(2500e8);
+        assertEq(oracle.getPrice(), 3000e8);
+    }
 
-    assertEq(oracle.getPrice(), 2500e8);
-}
+    function testGetPriceAfterSecondUpdate() public {
+        mockFeed.setPrice(2500e8);
 
-function testOracleAddressIsNotZero() public view {
-    assertTrue(address(oracle) != address(0));
-}
-function testMockFeedAddressIsNotZero() public view {
-    assertTrue(address(mockFeed) != address(0));
-}
+        assertEq(oracle.getPrice(), 2500e8);
+    }
 
-function testOracleReturnsUintPrice() public view {
-    uint256 price = oracle.getPrice();
+    function testOracleAddressIsNotZero() public view {
+        assertTrue(address(oracle) != address(0));
+    }
 
-    assertGt(price, 0);
-}
+    function testMockFeedAddressIsNotZero() public view {
+        assertTrue(address(mockFeed) != address(0));
+    }
+
+    function testOracleReturnsUintPrice() public view {
+        uint256 price = oracle.getPrice();
+
+        assertGt(price, 0);
+    }
 }

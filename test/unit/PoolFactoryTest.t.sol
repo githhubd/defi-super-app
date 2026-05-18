@@ -34,35 +34,33 @@ contract PoolFactoryTest is Test {
         assertEq(pool, predicted);
         assertEq(factory.getPoolCount(), 1);
     }
+
     function testPoolCountStartsAtZero() public view {
-    assertEq(factory.getPoolCount(), 0);
-}
+        assertEq(factory.getPoolCount(), 0);
+    }
 
-function testCreateTwoPools() public {
-    factory.createPool(address(tokenA), address(tokenB));
-    factory.createPool(address(tokenB), address(tokenA));
+    function testCreateTwoPools() public {
+        factory.createPool(address(tokenA), address(tokenB));
+        factory.createPool(address(tokenB), address(tokenA));
 
-    assertEq(factory.getPoolCount(), 2);
-}
+        assertEq(factory.getPoolCount(), 2);
+    }
 
-function testPredictAddressIsNotZero() public view {
-    bytes32 salt = keccak256("POOL_TEST");
+    function testPredictAddressIsNotZero() public view {
+        bytes32 salt = keccak256("POOL_TEST");
 
-    address predicted = factory.predictPoolAddress(
-        address(tokenA),
-        address(tokenB),
-        salt
-    );
+        address predicted = factory.predictPoolAddress(address(tokenA), address(tokenB), salt);
 
-    assertTrue(predicted != address(0));
-}
-function testFactoryAddressIsNotZero() public view {
-    assertTrue(address(factory) != address(0));
-}
+        assertTrue(predicted != address(0));
+    }
 
-function testCreatedPoolIsNotFactory() public {
-    address pool = factory.createPool(address(tokenA), address(tokenB));
+    function testFactoryAddressIsNotZero() public view {
+        assertTrue(address(factory) != address(0));
+    }
 
-    assertTrue(pool != address(factory));
-}
+    function testCreatedPoolIsNotFactory() public {
+        address pool = factory.createPool(address(tokenA), address(tokenB));
+
+        assertTrue(pool != address(factory));
+    }
 }

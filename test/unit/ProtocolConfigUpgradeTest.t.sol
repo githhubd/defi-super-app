@@ -42,28 +42,30 @@ contract ProtocolConfigUpgradeTest is Test {
         assertEq(proxyV2.maxLtv(), 75);
         assertEq(proxyV2.protocolFee(), 30);
     }
+
     function testSetProtocolFee() public {
-    proxyV1.setProtocolFee(100);
+        proxyV1.setProtocolFee(100);
 
-    assertEq(proxyV1.protocolFee(), 100);
-}
+        assertEq(proxyV1.protocolFee(), 100);
+    }
 
-function testRevertIfProtocolFeeTooHigh() public {
-    vm.expectRevert("fee too high");
-    proxyV1.setProtocolFee(1001);
-}
+    function testRevertIfProtocolFeeTooHigh() public {
+        vm.expectRevert("fee too high");
+        proxyV1.setProtocolFee(1001);
+    }
 
-function testOnlyOwnerCanSetProtocolFee() public {
-    vm.prank(address(1));
+    function testOnlyOwnerCanSetProtocolFee() public {
+        vm.prank(address(1));
 
-    vm.expectRevert();
-    proxyV1.setProtocolFee(100);
-}
-function testOwnerIsThisContract() public view {
-    assertEq(proxyV1.owner(), address(this));
-}
+        vm.expectRevert();
+        proxyV1.setProtocolFee(100);
+    }
 
-function testProtocolConfigAddressIsNotZero() public view {
-    assertTrue(address(proxyV1) != address(0));
-}
+    function testOwnerIsThisContract() public view {
+        assertEq(proxyV1.owner(), address(this));
+    }
+
+    function testProtocolConfigAddressIsNotZero() public view {
+        assertTrue(address(proxyV1) != address(0));
+    }
 }

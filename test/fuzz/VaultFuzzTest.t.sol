@@ -41,23 +41,24 @@ contract VaultFuzzTest is Test {
 
         assertEq(vault.totalAssets(), 0);
     }
+
     function testFuzzMint(uint256 shares) public {
-    shares = bound(shares, 1 ether, 10_000 ether);
+        shares = bound(shares, 1 ether, 10_000 ether);
 
-    vm.prank(user);
-    vault.mint(shares, user);
+        vm.prank(user);
+        vault.mint(shares, user);
 
-    assertEq(vault.balanceOf(user), shares);
-}
+        assertEq(vault.balanceOf(user), shares);
+    }
 
-function testFuzzRedeem(uint256 amount) public {
-    amount = bound(amount, 1 ether, 10_000 ether);
+    function testFuzzRedeem(uint256 amount) public {
+        amount = bound(amount, 1 ether, 10_000 ether);
 
-    vm.startPrank(user);
-    vault.deposit(amount, user);
-    vault.redeem(amount, user, user);
-    vm.stopPrank();
+        vm.startPrank(user);
+        vault.deposit(amount, user);
+        vault.redeem(amount, user, user);
+        vm.stopPrank();
 
-    assertEq(vault.balanceOf(user), 0);
-}
+        assertEq(vault.balanceOf(user), 0);
+    }
 }

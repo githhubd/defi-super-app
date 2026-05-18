@@ -68,23 +68,24 @@ contract LendingPoolTest is Test {
 
         assertEq(lending.debt(user), 0);
     }
+
     function testInitialUserCollateralIsZero() public view {
-    assertEq(lending.collateral(user), 0);
-}
+        assertEq(lending.collateral(user), 0);
+    }
 
-function testInitialUserDebtIsZero() public view {
-    assertEq(lending.debt(user), 0);
-}
+    function testInitialUserDebtIsZero() public view {
+        assertEq(lending.debt(user), 0);
+    }
 
-function testLtvIsFifty() public view {
-    assertEq(lending.LTV(), 50);
-}
+    function testLtvIsFifty() public view {
+        assertEq(lending.LTV(), 50);
+    }
 
-function testLiquidationThresholdIsSeventyFive() public view {
-    assertEq(lending.LIQUIDATION_THRESHOLD(), 75);
-}
+    function testLiquidationThresholdIsSeventyFive() public view {
+        assertEq(lending.LIQUIDATION_THRESHOLD(), 75);
+    }
 
-function testBorrowTokenAddress() public view {
-    assertEq(address(lending.borrowToken()), address(borrowToken));
-}
+    function testBorrowTokenAddress() public view {
+        assertEq(address(lending.borrowToken()), address(borrowToken));
+    }
 }

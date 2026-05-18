@@ -25,21 +25,22 @@ contract GovernorTest is Test {
     function testVotingDelay() public {
         assertEq(governor.votingDelay(), 86400);
     }
+
     function testVotingPeriod() public view {
-    assertEq(governor.votingPeriod(), 604800);
-}
+        assertEq(governor.votingPeriod(), 604800);
+    }
 
+    function testTokenVotingPower() public {
+        vm.roll(block.number + 1);
 
-function testTokenVotingPower() public {
-    vm.roll(block.number + 1);
+        assertGt(token.getVotes(address(this)), 0);
+    }
 
-    assertGt(token.getVotes(address(this)), 0);
-}
-function testGovernorName() public view {
-    assertEq(governor.name(), "SuperGovernor");
-}
+    function testGovernorName() public view {
+        assertEq(governor.name(), "SuperGovernor");
+    }
 
-function testGovernorVersion() public view {
-    assertEq(governor.version(), "1");
-}
+    function testGovernorVersion() public view {
+        assertEq(governor.version(), "1");
+    }
 }
