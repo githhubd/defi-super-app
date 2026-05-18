@@ -45,4 +45,50 @@ contract YieldVaultTest is Test {
 
         assertEq(vault.totalAssets(), 500 ether);
     }
+    function testPreviewDeposit() public {
+    uint256 shares = vault.previewDeposit(1000 ether);
+
+    assertEq(shares, 1000 ether);
+}
+
+function testPreviewWithdraw() public {
+    vm.startPrank(user);
+
+    token.approve(address(vault), 1000 ether);
+    vault.deposit(1000 ether, user);
+
+    vm.stopPrank();
+
+    uint256 shares = vault.previewWithdraw(500 ether);
+
+    assertEq(shares, 500 ether);
+}
+
+function testRedeem() public {
+    vm.startPrank(user);
+
+    token.approve(address(vault), 1000 ether);
+    vault.deposit(1000 ether, user);
+
+    vault.redeem(500 ether, user, user);
+
+    vm.stopPrank();
+
+    assertEq(vault.totalAssets(), 500 ether);
+}
+
+function testMaxDeposit() public view {
+    assertEq(vault.maxDeposit(user), type(uint256).max);
+}
+
+function testMaxWithdrawAfterDeposit() public {
+    vm.startPrank(user);
+
+    token.approve(address(vault), 1000 ether);
+    vault.deposit(1000 ether, user);
+
+    vm.stopPrank();
+
+    assertEq(vault.maxWithdraw(user), 1000 ether);
+}
 }

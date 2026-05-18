@@ -53,4 +53,11 @@ contract ChainlinkOracleTest is Test {
         vm.expectRevert(ChainlinkOracle.InvalidPrice.selector);
         oracle.getPrice();
     }
+    function testStaleTime() public view {
+    assertEq(oracle.STALE_TIME(), 1 hours);
+}
+
+function testPriceFeedAddress() public view {
+    assertEq(address(oracle.PRICE_FEED()), address(mockFeed));
+}
 }
