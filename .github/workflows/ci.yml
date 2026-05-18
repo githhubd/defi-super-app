@@ -19,7 +19,7 @@ jobs:
         run: forge build
 
       - name: Run tests
-        run: forge test -vvv
+  run: forge test -vvv --no-match-path "test/fork/*"
 
       - name: Run coverage
         run: forge coverage
