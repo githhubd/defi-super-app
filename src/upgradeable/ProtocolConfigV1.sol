@@ -10,7 +10,7 @@ contract ProtocolConfigV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable 
 
     function initialize(uint256 _protocolFee) public initializer {
         __Ownable_init(msg.sender);
-        __UUPSUpgradeable_init();
+       
 
         protocolFee = _protocolFee;
     }
@@ -20,7 +20,7 @@ contract ProtocolConfigV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable 
         protocolFee = _protocolFee;
     }
 
-    function version() external pure returns (string memory) {
+    function version() external pure virtual returns (string memory) {
         return "V1";
     }
 
