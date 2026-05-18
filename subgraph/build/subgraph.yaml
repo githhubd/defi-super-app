@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SuperAMM
+    network: base-sepolia
+    source:
+      address: "0x0000000000000000000000000000000000000000"
+      abi: SuperAMM
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - LiquidityAdded
+      abis:
+        - name: SuperAMM
+          file: SuperAMM\SuperAMM.json
+      eventHandlers:
+        - event: Swapped(indexed address,uint256,uint256)
+          handler: handleSwapped
+        - event: LiquidityAdded(indexed address,uint256,uint256)
+          handler: handleLiquidityAdded
+      file: SuperAMM\SuperAMM.wasm

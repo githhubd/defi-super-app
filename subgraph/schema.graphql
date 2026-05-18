@@ -1,0 +1,33 @@
+type Swap @entity(immutable: false) {
+  id: ID!
+  user: Bytes!
+  amountIn: BigInt!
+  amountOut: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type LiquidityAdded @entity(immutable: false) {
+  id: ID!
+  user: Bytes!
+  amountA: BigInt!
+  amountB: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type Deposit @entity(immutable: false) {
+  id: ID!
+  user: Bytes!
+  amount: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type Proposal @entity(immutable: false) {
+  id: ID!
+  proposer: Bytes!
+  description: String
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
