@@ -1,0 +1,7 @@
+export const ADDRESSES = {
+  governanceToken: "0x0000000000000000000000000000000000000000",
+  amm: "0x0000000000000000000000000000000000000000",
+  vault: "0x0000000000000000000000000000000000000000",
+  governor: "0x0000000000000000000000000000000000000000",
+  subgraphUrl: "https://api.studio.thegraph.com/query/YOUR_ID/defi-super-app/version/latest",
+};
