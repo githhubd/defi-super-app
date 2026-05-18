@@ -48,4 +48,24 @@ contract AMMFuzzTest is Test {
         assertGe(amm.reserveA(), 50_000 ether + amountA);
         assertGe(amm.reserveB(), 50_000 ether + amountB);
     }
+    function testFuzzSwapKeepsReservesPositive(uint256 amountIn) public {
+    amountIn = bound(amountIn, 1 ether, 1000 ether);
+
+    vm.prank(user);
+    amm.swapAForB(amountIn, 1);
+
+    assertGt(amm.reserveA(), 0);
+    assertGt(amm.reserveB(), 0);
+}
+
+function testFuzzSwapOutputChangesReserve(uint256 amountIn) public {
+    amountIn = bound(amountIn, 1 ether, 500 ether);
+
+    uint256 reserveBBefore = amm.reserveB();
+
+    vm.prank(user);
+    amm.swapAForB(amountIn, 1);
+
+    assertLt(amm.reserveB(), reserveBBefore);
+}
 }
