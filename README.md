@@ -1,33 +1,183 @@
 # DeFi Super-App
 
-DeFi Super-App is a full-stack decentralized protocol that includes an AMM, lending pool, ERC4626 vault, Chainlink oracle integration, DAO governance, ERC1155 badges, upgradeable configuration, factory deployment, and automated testing.
+Full-stack decentralized finance protocol built on Base Sepolia.
 
-## Tech Stack
+The project combines:
+- AMM liquidity pools
+- Lending & borrowing
+- ERC4626 yield vaults
+- DAO governance
+- Chainlink price oracles
+- The Graph subgraph indexing
+- Upgradeable smart contracts
 
-- Solidity
+---
+
+# Features
+
+## AMM (Automated Market Maker)
+- Token swaps
+- Liquidity pools
+- Constant-product AMM formula
+- PoolFactory deployment system
+
+## Lending Protocol
+- Collateral deposits
+- Borrowing functionality
+- Health factor calculation
+- Liquidation mechanism
+
+## ERC4626 Yield Vault
+- Tokenized vault standard
+- Vault share accounting
+- Yield strategy integration
+
+## DAO Governance
+- GovernanceToken with ERC20Votes
+- Proposal creation
+- On-chain voting
+- Timelock execution
+
+## Oracle Integration
+- Chainlink price feeds
+
+## Indexing & Analytics
+- The Graph subgraph integration
+- Indexed swaps and governance events
+
+## Upgradeability
+- UUPS upgradeable contracts
+- Protocol configuration upgrades
+
+---
+
+# Tech Stack
+
+## Smart Contracts
+- Solidity ^0.8.24
+- OpenZeppelin Contracts
 - Foundry
-- OpenZeppelin
+
+## Frontend
+- React
+- TypeScript
+- Vite
+- Wagmi
+- Viem
+- RainbowKit
+
+## Blockchain Infrastructure
+- Base Sepolia
 - Chainlink
-- GitHub Actions
-- Slither
-- React frontend
 - The Graph
 
-## Core Contracts
+---
 
-- GovernanceToken — ERC20Votes + ERC20Permit
-- SuperAMM — constant product AMM with 0.3% fee
-- LendingPool — collateral, borrow, repay, health factor
-- YieldVault — ERC4626 tokenized vault
-- ChainlinkOracle — price feed with stale price check
-- SuperGovernor — DAO governance
-- Treasury — DAO treasury
-- PoolFactory — CREATE and CREATE2 deployment
-- ProtocolConfigV1/V2 — UUPS upgrade path
-- ProtocolBadge — ERC1155 badge NFT
-- AssemblyMath — Yul gas comparison
+# Project Structure
 
-## How to Install
+src/
+ ├── amm/
+ ├── governance/
+ ├── lending/
+ ├── vault/
+ ├── upgradeable/
+ ├── badges/
+ └── oracle/
 
-```bash
-forge install
+test/
+ ├── unit/
+ ├── fuzz/
+ ├── invariant/
+ └── fork/
+
+subgraph/
+frontend/
+
+---
+
+# Smart Contracts
+
+| Contract | Description |
+|---|---|
+| SuperAMM | AMM swap and liquidity pool |
+| PoolFactory | Deploys AMM pools |
+| LendingPool | Lending and borrowing |
+| YieldVault | ERC4626 vault |
+| GovernanceToken | ERC20Votes governance token |
+| SuperGovernor | DAO governance |
+| ProtocolConfigV1/V2 | Upgradeable protocol configuration |
+| ProtocolBadge | ERC1155 protocol badges |
+
+---
+
+# Security Features
+
+- ReentrancyGuard
+- SafeERC20
+- Access control
+- Timelock governance
+- UUPS upgradeability
+- Slippage protection
+- Health factor liquidation checks
+
+---
+
+# Testing
+
+The project includes:
+- Unit tests
+- Fuzz tests
+- Invariant tests
+- Fork tests
+
+Run tests:
+
+forge test
+
+---
+
+# Frontend
+
+Start frontend:
+
+cd subgraph/frontend
+npm install
+npm run dev
+
+Frontend includes:
+- RainbowKit wallet connection
+- Governance dashboard
+- AMM swap interface
+- Vault interaction UI
+- Subgraph analytics
+
+---
+
+# Deployment
+
+Deploy contracts:
+
+forge script script/Deploy.s.sol --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
+
+---
+
+# Architecture
+
+The protocol architecture includes:
+- AMM liquidity layer
+- Lending subsystem
+- ERC4626 vault system
+- DAO governance
+- Oracle integration
+- Subgraph indexing
+
+---
+
+# Authors
+
+Blockchain Technologies 2 Final Project
+
+Team Members:
+- Nurbai Karakat
+- Amantay Balnur
+- Duiseman Gulnaz
