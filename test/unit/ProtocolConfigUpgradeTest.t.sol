@@ -59,4 +59,11 @@ function testOnlyOwnerCanSetProtocolFee() public {
     vm.expectRevert();
     proxyV1.setProtocolFee(100);
 }
+function testOwnerIsThisContract() public view {
+    assertEq(proxyV1.owner(), address(this));
+}
+
+function testProtocolConfigAddressIsNotZero() public view {
+    assertTrue(address(proxyV1) != address(0));
+}
 }

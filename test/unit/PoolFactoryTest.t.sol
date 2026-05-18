@@ -56,4 +56,13 @@ function testPredictAddressIsNotZero() public view {
 
     assertTrue(predicted != address(0));
 }
+function testFactoryAddressIsNotZero() public view {
+    assertTrue(address(factory) != address(0));
+}
+
+function testCreatedPoolIsNotFactory() public {
+    address pool = factory.createPool(address(tokenA), address(tokenB));
+
+    assertTrue(pool != address(factory));
+}
 }

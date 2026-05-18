@@ -35,4 +35,11 @@ function testTokenVotingPower() public {
 
     assertGt(token.getVotes(address(this)), 0);
 }
+function testGovernorName() public view {
+    assertEq(governor.name(), "SuperGovernor");
+}
+
+function testGovernorVersion() public view {
+    assertEq(governor.version(), "1");
+}
 }

@@ -75,4 +75,13 @@ function testGetPriceAfterSecondUpdate() public {
 function testOracleAddressIsNotZero() public view {
     assertTrue(address(oracle) != address(0));
 }
+function testMockFeedAddressIsNotZero() public view {
+    assertTrue(address(mockFeed) != address(0));
+}
+
+function testOracleReturnsUintPrice() public view {
+    uint256 price = oracle.getPrice();
+
+    assertGt(price, 0);
+}
 }
