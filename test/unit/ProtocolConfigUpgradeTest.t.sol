@@ -42,4 +42,21 @@ contract ProtocolConfigUpgradeTest is Test {
         assertEq(proxyV2.maxLtv(), 75);
         assertEq(proxyV2.protocolFee(), 30);
     }
+    function testSetProtocolFee() public {
+    proxyV1.setProtocolFee(100);
+
+    assertEq(proxyV1.protocolFee(), 100);
+}
+
+function testRevertIfProtocolFeeTooHigh() public {
+    vm.expectRevert("fee too high");
+    proxyV1.setProtocolFee(1001);
+}
+
+function testOnlyOwnerCanSetProtocolFee() public {
+    vm.prank(address(1));
+
+    vm.expectRevert();
+    proxyV1.setProtocolFee(100);
+}
 }

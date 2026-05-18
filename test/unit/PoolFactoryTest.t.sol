@@ -34,4 +34,26 @@ contract PoolFactoryTest is Test {
         assertEq(pool, predicted);
         assertEq(factory.getPoolCount(), 1);
     }
+    function testPoolCountStartsAtZero() public view {
+    assertEq(factory.getPoolCount(), 0);
+}
+
+function testCreateTwoPools() public {
+    factory.createPool(address(tokenA), address(tokenB));
+    factory.createPool(address(tokenB), address(tokenA));
+
+    assertEq(factory.getPoolCount(), 2);
+}
+
+function testPredictAddressIsNotZero() public view {
+    bytes32 salt = keccak256("POOL_TEST");
+
+    address predicted = factory.predictPoolAddress(
+        address(tokenA),
+        address(tokenB),
+        salt
+    );
+
+    assertTrue(predicted != address(0));
+}
 }

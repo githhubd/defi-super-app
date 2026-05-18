@@ -25,4 +25,14 @@ contract GovernorTest is Test {
     function testVotingDelay() public {
         assertEq(governor.votingDelay(), 86400);
     }
+    function testVotingPeriod() public view {
+    assertEq(governor.votingPeriod(), 604800);
+}
+
+
+function testTokenVotingPower() public {
+    vm.roll(block.number + 1);
+
+    assertGt(token.getVotes(address(this)), 0);
+}
 }
