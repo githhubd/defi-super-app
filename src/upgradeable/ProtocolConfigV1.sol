@@ -10,7 +10,6 @@ contract ProtocolConfigV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable 
 
     function initialize(uint256 _protocolFee) public initializer {
         __Ownable_init(msg.sender);
-       
 
         protocolFee = _protocolFee;
     }

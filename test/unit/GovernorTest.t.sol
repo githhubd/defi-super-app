@@ -7,12 +7,10 @@ import {GovernanceToken} from "../../src/token/GovernanceToken.sol";
 import {SuperGovernor} from "../../src/governance/SuperGovernor.sol";
 
 contract GovernorTest is Test {
-
     GovernanceToken token;
     SuperGovernor governor;
 
     function setUp() public {
-
         token = new GovernanceToken();
 
         governor = new SuperGovernor(token);
@@ -21,18 +19,10 @@ contract GovernorTest is Test {
     }
 
     function testProposalThreshold() public {
-
-        assertEq(
-            governor.proposalThreshold(),
-            1e18
-        );
+        assertEq(governor.proposalThreshold(), 1e18);
     }
 
     function testVotingDelay() public {
-
-        assertEq(
-            governor.votingDelay(),
-             86400
-        );
+        assertEq(governor.votingDelay(), 86400);
     }
 }

@@ -15,9 +15,7 @@ contract ChainlinkForkTest is Test {
 
         vm.createSelectFork(MAINNET_RPC_URL);
 
-        ethUsdFeed = AggregatorV3Interface(
-            0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
-        );
+        ethUsdFeed = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419);
     }
 
     function testForkReadsChainlinkPrice() public view {

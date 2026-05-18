@@ -16,15 +16,9 @@ contract ProtocolConfigUpgradeTest is Test {
     function setUp() public {
         implementationV1 = new ProtocolConfigV1();
 
-        bytes memory initData = abi.encodeWithSelector(
-            ProtocolConfigV1.initialize.selector,
-            30
-        );
+        bytes memory initData = abi.encodeWithSelector(ProtocolConfigV1.initialize.selector, 30);
 
-        ERC1967Proxy proxy = new ERC1967Proxy(
-            address(implementationV1),
-            initData
-        );
+        ERC1967Proxy proxy = new ERC1967Proxy(address(implementationV1), initData);
 
         proxyV1 = ProtocolConfigV1(address(proxy));
     }

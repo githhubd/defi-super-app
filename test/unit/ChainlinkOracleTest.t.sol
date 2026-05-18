@@ -18,17 +18,7 @@ contract MockAggregator {
         updatedAt = _updatedAt;
     }
 
-    function latestRoundData()
-        external
-        view
-        returns (
-            uint80,
-            int256,
-            uint256,
-            uint256,
-            uint80
-        )
-    {
+    function latestRoundData() external view returns (uint80, int256, uint256, uint256, uint80) {
         return (1, price, 1, updatedAt, 1);
     }
 }
@@ -49,13 +39,13 @@ contract ChainlinkOracleTest is Test {
     }
 
     function testRevertIfPriceIsStale() public {
-    vm.warp(10 hours);
+        vm.warp(10 hours);
 
-    mockFeed.setStalePrice(2000e8, block.timestamp - 2 hours);
+        mockFeed.setStalePrice(2000e8, block.timestamp - 2 hours);
 
-    vm.expectRevert(ChainlinkOracle.StalePrice.selector);
-    oracle.getPrice();
-}
+        vm.expectRevert(ChainlinkOracle.StalePrice.selector);
+        oracle.getPrice();
+    }
 
     function testRevertIfPriceIsInvalid() public {
         mockFeed.setPrice(0);

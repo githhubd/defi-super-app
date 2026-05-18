@@ -6,8 +6,5 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract YieldVault is ERC4626 {
-    constructor(IERC20 asset_)
-        ERC20("DeFi Super App Vault Share", "DSAV")
-        ERC4626(asset_)
-    {}
+    constructor(IERC20 asset_) ERC20("DeFi Super App Vault Share", "DSAV") ERC4626(asset_) {}
 }

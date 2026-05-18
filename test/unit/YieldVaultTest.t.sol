@@ -7,14 +7,12 @@ import {GovernanceToken} from "../../src/token/GovernanceToken.sol";
 import {YieldVault} from "../../src/vault/YieldVault.sol";
 
 contract YieldVaultTest is Test {
-
     GovernanceToken token;
     YieldVault vault;
 
     address user = address(1);
 
     function setUp() public {
-
         token = new GovernanceToken();
 
         vault = new YieldVault(token);
@@ -23,46 +21,28 @@ contract YieldVaultTest is Test {
     }
 
     function testDeposit() public {
-
         vm.startPrank(user);
 
         token.approve(address(vault), 1000 ether);
 
-        vault.deposit(
-            1000 ether,
-            user
-        );
+        vault.deposit(1000 ether, user);
 
         vm.stopPrank();
 
-        assertEq(
-            vault.totalAssets(),
-            1000 ether
-        );
+        assertEq(vault.totalAssets(), 1000 ether);
     }
 
     function testWithdraw() public {
-
         vm.startPrank(user);
 
         token.approve(address(vault), 1000 ether);
 
-        vault.deposit(
-            1000 ether,
-            user
-        );
+        vault.deposit(1000 ether, user);
 
-        vault.withdraw(
-            500 ether,
-            user,
-            user
-        );
+        vault.withdraw(500 ether, user, user);
 
         vm.stopPrank();
 
-        assertEq(
-            vault.totalAssets(),
-            500 ether
-        );
+        assertEq(vault.totalAssets(), 500 ether);
     }
 }

@@ -27,17 +27,9 @@ contract PoolFactoryTest is Test {
     function testCreatePoolDeterministic() public {
         bytes32 salt = keccak256("POOL_1");
 
-        address predicted = factory.predictPoolAddress(
-            address(tokenA),
-            address(tokenB),
-            salt
-        );
+        address predicted = factory.predictPoolAddress(address(tokenA), address(tokenB), salt);
 
-        address pool = factory.createPoolDeterministic(
-            address(tokenA),
-            address(tokenB),
-            salt
-        );
+        address pool = factory.createPoolDeterministic(address(tokenA), address(tokenB), salt);
 
         assertEq(pool, predicted);
         assertEq(factory.getPoolCount(), 1);
