@@ -91,4 +91,23 @@ function testMaxWithdrawAfterDeposit() public {
 
     assertEq(vault.maxWithdraw(user), 1000 ether);
 }
+function testAssetAddress() public view {
+    assertEq(address(vault.asset()), address(token));
+}
+
+function testVaultName() public view {
+    assertEq(vault.name(), "DeFi Super App Vault Share");
+}
+
+function testVaultSymbol() public view {
+    assertEq(vault.symbol(), "DSAV");
+}
+
+function testConvertToShares() public view {
+    assertEq(vault.convertToShares(100 ether), 100 ether);
+}
+
+function testConvertToAssets() public view {
+    assertEq(vault.convertToAssets(100 ether), 100 ether);
+}
 }

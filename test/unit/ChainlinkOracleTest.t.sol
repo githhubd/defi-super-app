@@ -60,4 +60,19 @@ contract ChainlinkOracleTest is Test {
 function testPriceFeedAddress() public view {
     assertEq(address(oracle.PRICE_FEED()), address(mockFeed));
 }
+function testGetPriceAfterUpdate() public {
+    mockFeed.setPrice(3000e8);
+
+    assertEq(oracle.getPrice(), 3000e8);
+}
+
+function testGetPriceAfterSecondUpdate() public {
+    mockFeed.setPrice(2500e8);
+
+    assertEq(oracle.getPrice(), 2500e8);
+}
+
+function testOracleAddressIsNotZero() public view {
+    assertTrue(address(oracle) != address(0));
+}
 }
